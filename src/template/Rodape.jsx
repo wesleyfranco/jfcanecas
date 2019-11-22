@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Rodape = (props) => (
+const Rodape = ({titulo}) => (
     <footer>
-        <p>JF Canecas</p>
+        <p>{titulo}</p>
     </footer>
 )
 

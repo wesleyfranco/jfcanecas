@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Cabecalho = ({nome}) => (
-    <React.Fragment>
-        <header className="page-header">
-            <h2>{nome}</h2>
-        </header>
-    </React.Fragment>
+import Menu from './Menu';
+
+const Cabecalho = ({titulo}) => (
+    <header className="page-header">
+        <Menu titulo={titulo} />
+    </header>
 )
 
 export default Cabecalho
