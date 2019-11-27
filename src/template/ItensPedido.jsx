@@ -1,7 +1,9 @@
 import React from 'react';
 
-const ItensPedido = ({lista}) => {
-    return lista.map((objeto) => (
+import BotaoAcao from './BotaoAcao';
+
+const ItensPedido = (props) => {
+    return props.lista.map((objeto) => (
         <tr key={objeto.id}>
             <td>
                 {objeto.cliente}
@@ -20,6 +22,12 @@ const ItensPedido = ({lista}) => {
             </td>
             <td>
                 {objeto.data_entrega}
+            </td>
+            <td>
+                <span className="mr-2">
+                    <BotaoAcao icone="check" classe="success" handleClick={() => props.handleMarcaEntregue(objeto)} />
+                </span>
+                <BotaoAcao icone="trash-o" classe="danger" handleClick={() => props.handleExclui(objeto)} />
             </td>
         </tr>
     ))

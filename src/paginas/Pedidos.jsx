@@ -52,6 +52,7 @@ class Pedidos extends Component {
                             <th scope="col">Quantidade</th>
                             <th scope="col">Total</th>
                             <th scope="col">Entrega</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
