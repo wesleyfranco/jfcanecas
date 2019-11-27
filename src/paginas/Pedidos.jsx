@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Breadcrumb from '../template/Breadcrumb';
 import ItensPedido from '../template/ItensPedido';
 
 class Pedidos extends Component {
@@ -41,7 +42,7 @@ class Pedidos extends Component {
     render() {
         return (
             <div>
-                <h1>Lista de pedidos</h1>
+                <Breadcrumb itemAtivo="Pedidos" />
                 <table className="table table-hover table-dark">
                     <thead className="thead-light">
                         <tr>
