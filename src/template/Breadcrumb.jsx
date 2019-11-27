@@ -8,7 +8,7 @@ const Breadcrumb = ({itemAtivo}) => (
                 <Link to="/pedidos">Home</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-               {itemAtivo}
+               {itemAtivo}              
             </li>
         </ol>
     </nav>
