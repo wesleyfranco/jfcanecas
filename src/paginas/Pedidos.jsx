@@ -42,7 +42,7 @@ class Pedidos extends Component {
         return (
             <div>
                 <h1>Lista de pedidos</h1>
-                <table className="table">
+                <table className="table table-hover table-dark">
                     <thead className="thead-light">
                         <tr>
                             <th scope="col">Cliente</th>
