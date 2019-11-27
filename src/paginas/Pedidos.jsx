@@ -50,7 +50,7 @@ class Pedidos extends Component {
     render() {
         return (
             <div>
-                <Breadcrumb itemAtivo="Pedidos" />
+                <Breadcrumb itemAtivo="Pedidos" mostraHome={false} />
                 <table className="table table-hover table-dark">
                     <thead className="thead-light">
                         <tr>
