@@ -35,9 +35,17 @@ class Pedidos extends Component {
                 data_entrega: '2019-12-02'
             }
         ]}
+        this.handleMarcaEntregue = this.handleMarcaEntregue.bind(this)
+        this.handleExclui = this.handleExclui.bind(this)
     }
     atualiza() {
 
+    }
+    handleMarcaEntregue(objeto) {
+        alert(objeto.id)
+    }
+    handleExclui(objeto) {
+        alert(objeto.id)
     }
     render() {
         return (
@@ -56,7 +64,10 @@ class Pedidos extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <ItensPedido lista={this.state.lista} />
+                        <ItensPedido 
+                            lista={this.state.lista} 
+                            handleMarcaEntregue={this.handleMarcaEntregue} 
+                            handleExclui={this.handleExclui} />
                     </tbody>
                 </table>
             </div>
