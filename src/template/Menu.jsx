@@ -10,10 +10,10 @@ const Menu = ({titulo}) => (
             </button>
             <div className="collapse navbar-collapse" id="navbarJFCanecas">
                 <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active">
+                    <li className="nav-item">
                         <Link to="/pedidos" className="nav-link">Pedidos</Link>  
                     </li>
-                    <li className="nav-item active">
+                    <li className="nav-item">
                         <Link to="/cadastro" className="nav-link">Cadastro</Link>
                     </li>
                 </ul>
