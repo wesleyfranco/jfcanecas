@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 const Menu = ({titulo}) => (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
-            <Link to="#" className="navbar-brand">{titulo}</Link>
+            <Link to="#" className="navbar-brand">
+                <i class="fa fa-beer mr-2 size-5"></i>
+                {titulo}
+            </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarJFCanecas" aria-controls="navbarJFCanecas" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
