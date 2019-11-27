@@ -25,12 +25,12 @@ class Cadastro extends Component {
     render() {
         return (
             <Form nome="cadastro">
-                <Input tipo="text" nome="cliente" descricao="Nome do cliente" handleChange={this.handleChange} />
-                <Input tipo="text" nome="nome_arte" descricao="Nome da arte" handleChange={this.handleChange} />
-                <Input tipo="text" nome="tipo_caneca" descricao="Tipo da caneca" handleChange={this.handleChange} />
-                <Input tipo="number" nome="qtd_itens" descricao="Quantidade de itens" handleChange={this.handleChange} />
-                <Input tipo="number" nome="valor_total" descricao="Valor total" handleChange={this.handleChange} />
-                <Input tipo="date" nome="data_entrega" descricao="Data de entrega" handleChange={this.handleChange} />
+                <Input tipo="text" nome="cliente" descricao="Nome do cliente" handleChange={this.handleChange} valor={this.state} />
+                <Input tipo="text" nome="nome_arte" descricao="Nome da arte" handleChange={this.handleChange} valor={this.state} />
+                <Input tipo="text" nome="tipo_caneca" descricao="Tipo da caneca" handleChange={this.handleChange} valor={this.state} />
+                <Input tipo="number" nome="qtd_itens" descricao="Quantidade de itens" handleChange={this.handleChange} valor={this.state} />
+                <Input tipo="number" nome="valor_total" descricao="Valor total" handleChange={this.handleChange} valor={this.state} />
+                <Input tipo="date" nome="data_entrega" descricao="Data de entrega" handleChange={this.handleChange} valor={this.state} />
                 <Button descricao="Cadastar" classe="btn-primary" handleClick={this.handleClick} />
             </Form>
         )
