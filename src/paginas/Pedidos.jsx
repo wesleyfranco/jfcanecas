@@ -43,7 +43,7 @@ class Pedidos extends Component {
             <div>
                 <h1>Lista de pedidos</h1>
                 <table className="table">
-                    <thead>
+                    <thead className="thead-light">
                         <tr>
                             <th scope="col">Cliente</th>
                             <th scope="col">Arte</th>
