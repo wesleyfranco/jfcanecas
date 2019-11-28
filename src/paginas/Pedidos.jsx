@@ -47,7 +47,7 @@ class Pedidos extends Component {
         return (
             <div>
                 <Breadcrumb itemAtivo="Pedidos" mostraHome={false} />
-                <table className="table table-hover table-dark">
+                <table className="table table-dark">
                     <thead className="thead-light">
                         <tr>
                             <th scope="col">Cliente</th>
