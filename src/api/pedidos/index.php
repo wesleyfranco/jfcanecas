@@ -21,6 +21,10 @@ switch ($metodoHttp) {
     case 'OPTIONS':
         $pedidos->atualizaPedido();
         break;
+    case 'PATCH':
+    case 'OPTIONS':
+        $pedidos->atualizaEntregaPedido();
+        break;    
     case 'DELETE':
     case 'OPTIONS':
         $pedidos->excluiPedido();
