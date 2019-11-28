@@ -1,7 +1,9 @@
 import React from 'react';
 
+import './Rodape.css';
+
 const Rodape = ({titulo}) => (
-    <footer>
+    <footer className="bg-dark">
         <p>{titulo}</p>
     </footer>
 )
