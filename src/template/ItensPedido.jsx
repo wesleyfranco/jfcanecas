@@ -28,7 +28,7 @@ const ItensPedido = (props) => {
                 </td>
                 <td>
                     <span className="mr-2">
-                        <BotaoAcao icone="check" classe="success" handleClick={() => props.handleMarcaEntregue(objeto)} />
+                        <BotaoAcao icone="check" classe="success" handleClick={() => props.handleMarcaEntregue(objeto)} escondeBotao={(parseInt(objeto.entregue) === 1) ? true : false} />
                     </span>
                     <BotaoAcao icone="trash-o" classe="danger" handleClick={() => props.handleExclui(objeto)} />
                 </td>
