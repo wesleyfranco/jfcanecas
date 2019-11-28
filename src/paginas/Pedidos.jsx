@@ -28,7 +28,11 @@ class Pedidos extends Component {
         const idPedido = objeto.id;
         axios.delete(`${URL}${idPedido}`)
         .then(resposta => {
-            console.log(resposta)
+            if (resposta.data.erro === false) {
+                this.atualiza();
+            } else {
+                alert(resposta.data.msg)
+            }
         })
     }
     render() {
