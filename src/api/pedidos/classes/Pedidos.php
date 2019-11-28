@@ -40,6 +40,10 @@ class Pedidos extends Base {
         $id             = (int) $parametrosUrl[1];
         $stmt           = $this->conexao->prepare('DELETE FROM pedidos WHERE id = :id');
         $stmt->bindParam(':id', $id); 
-        $stmt->execute();
+        if ($stmt->execute() ) {
+            echo json_encode(['erro' => false, 'msg' => 'Pedido excluido com sucesso']);
+        } else {
+            echo json_encode(['erro' => true, 'msg' => 'Erro ao excluir pedido']);
+        }
     }
 }
