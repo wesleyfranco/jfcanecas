@@ -3,7 +3,7 @@
 require_once 'classes/Pedidos.php';
 
 header("Access-Control-Allow-Origin: *");
-header('Content-Type: application/json');
+header("Access-Control-Allow-Headers: Content-Type");
 
 $pedidos    = new Pedidos;
 $metodoHttp = $_SERVER['REQUEST_METHOD'];
@@ -13,6 +13,7 @@ switch ($metodoHttp) {
         $pedidos->retornaPedidos($pesquisa);
         break;
     case 'POST':
+    case 'OPTIONS':
         $pedidos->salvaPedidos();
         break;
     case 'PUT':
@@ -22,6 +23,6 @@ switch ($metodoHttp) {
     case 'DELETE':
         $idAtualizacao      = $_SERVER['PATH_INFO'];
         break; 
-    default:
-        echo json_encode(['erro' => 'Método não suportado']);      
+    /*default:
+        echo json_encode(['erro' => 'Método não suportado']);  */    
 }
