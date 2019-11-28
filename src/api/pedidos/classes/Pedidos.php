@@ -19,17 +19,18 @@ class Pedidos extends Base {
 
     public function salvaPedidos()
     {
+        $dados = json_decode(file_get_contents('php://input'));
         $stmt = $this->conexao->prepare('INSERT INTO pedidos (cliente, nome_arte, tipo_caneca, qtd_itens, valor_total, data_entrega) 
             VALUES(:cliente, :nome_arte, :tipo_caneca, :qtd_itens, :valor_total, :data_entrega)');
         $stmt->execute(array(
-            ':cliente' => $_POST['cliente'],
-            ':nome_arte' => $_POST['nome_arte'],
-            ':tipo_caneca' => $_POST['tipo_caneca'],
-            ':qtd_itens' => $_POST['qtd_itens'],
-            ':valor_total' => $_POST['valor_total'],
-            ':data_entrega' => $_POST['data_entrega'],
+            ':cliente' => $dados->cliente,
+            ':nome_arte' => $dados->nome_arte,
+            ':tipo_caneca' =>$dados->tipo_caneca,
+            ':qtd_itens' => $dados->qtd_itens,
+            ':valor_total' => $dados->valor_total,
+            ':data_entrega' => $dados->data_entrega,
         ));
         
-        echo $stmt->rowCount(); 
+        echo json_encode(['numPedido' =>  $stmt->rowCount()]); 
     }
 }
