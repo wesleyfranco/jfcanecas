@@ -36,8 +36,9 @@ class Pedidos extends Base {
 
     public function excluiPedido()
     {
-        $dados = json_decode(file_get_contents('php://input'));
-        $stmt = $this->conexao->prepare('DELETE FROM pedidos WHERE id = :id');
+        $parametrosUrl  = explode('/', $_SERVER['PATH_INFO']);
+        $id             = (int) $parametrosUrl[1];
+        $stmt           = $this->conexao->prepare('DELETE FROM pedidos WHERE id = :id');
         $stmt->bindParam(':id', $id); 
         $stmt->execute();
     }

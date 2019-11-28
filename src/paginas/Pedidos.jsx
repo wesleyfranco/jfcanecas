@@ -25,7 +25,11 @@ class Pedidos extends Component {
         alert(objeto.id)
     }
     handleExclui(objeto) {
-        alert(objeto.id)
+        const idPedido = objeto.id;
+        axios.delete(`${URL}${idPedido}`)
+        .then(resposta => {
+            console.log(resposta)
+        })
     }
     render() {
         return (
