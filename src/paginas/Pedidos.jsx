@@ -22,7 +22,15 @@ class Pedidos extends Component {
         })
     }
     handleMarcaEntregue(objeto) {
-        alert(objeto.id)
+        const idPedido = objeto.id;
+        axios.patch(`${URL}${idPedido}`, { entregue: true })
+        .then((resposta) => {
+            if (resposta.data.erro === false) {
+                this.atualiza();
+            } else {
+                alert(resposta.data.msg)
+            }
+        })
     }
     handleExclui(objeto) {
         const idPedido = objeto.id;
