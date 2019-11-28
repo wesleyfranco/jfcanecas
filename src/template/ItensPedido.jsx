@@ -6,7 +6,7 @@ import { ConverteDataBr } from '../utils/utils';
 const ItensPedido = (props) => {
     if (props.lista.length) {
         return props.lista.map((objeto) => (
-            <tr key={objeto.id}>
+            <tr key={objeto.id} className={(parseInt(objeto.entregue) === 1) ? 'pedido-entregue' : ''}>
                 <td>
                     {objeto.cliente}
                 </td>
