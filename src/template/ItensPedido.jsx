@@ -1,6 +1,7 @@
 import React from 'react';
 
 import BotaoAcao from './BotaoAcao';
+import { ConverteDataBr } from '../utils/utils';
 
 const ItensPedido = (props) => {
     return props.lista.map((objeto) => (
@@ -21,7 +22,7 @@ const ItensPedido = (props) => {
                 {objeto.valor_total}
             </td>
             <td>
-                {objeto.data_entrega}
+                {ConverteDataBr(objeto.data_entrega)}
             </td>
             <td>
                 <span className="mr-2">
