@@ -11,7 +11,7 @@ const URL = 'http://localhost:8080/';
 class Cadastro extends Component {
     constructor(props) {
         super(props)
-        this.state = { redireciona: false }
+        this.state = {}
         this.handleChange   = this.handleChange.bind(this)
         this.handleClick    = this.handleClick.bind(this)
     }
