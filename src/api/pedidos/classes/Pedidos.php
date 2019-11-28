@@ -46,4 +46,19 @@ class Pedidos extends Base {
             echo json_encode(['erro' => true, 'msg' => 'Erro ao excluir pedido']);
         }
     }
+
+    public function atualizaEntregaPedido()
+    {
+        $parametrosUrl  = explode('/', $_SERVER['PATH_INFO']);
+        $id             = (int) $parametrosUrl[1];
+        $dados          = json_decode(file_get_contents('php://input'));
+        $stmt           = $this->conexao->prepare('UPDATE pedidos SET entregue = :entregue WHERE id = :id');
+        $stmt->bindParam(':entregue', $dados->entregue);
+        $stmt->bindParam(':id', $id);
+        if ($stmt->execute() ) {
+            echo json_encode(['erro' => false, 'msg' => 'Pedido entregue']);
+        } else {
+            echo json_encode(['erro' => true, 'msg' => 'Erro ao entregar pedido']);
+        }
+    }
 }
