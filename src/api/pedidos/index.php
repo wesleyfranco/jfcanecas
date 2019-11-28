@@ -2,6 +2,9 @@
 
 require_once 'classes/Pedidos.php';
 
+header("Access-Control-Allow-Origin: *");
+header('Content-Type: application/json');
+
 $pedidos    = new Pedidos;
 $metodoHttp = $_SERVER['REQUEST_METHOD'];
 switch ($metodoHttp) {
