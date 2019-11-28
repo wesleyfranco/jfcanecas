@@ -10,22 +10,21 @@ $pedidos    = new Pedidos;
 $metodoHttp = $_SERVER['REQUEST_METHOD'];
 
 switch ($metodoHttp) {
-    case 'GET':
-        $pesquisa = (isset($_GET['cliente'])) ? $_GET['cliente'] : '';
-        $pedidos->retornaPedidos($pesquisa);
+    case 'GET':       
+        $pedidos->retornaPedidos();
         break;
     case 'POST':
     case 'OPTIONS':
         $pedidos->salvaPedido();
         break;
     case 'PUT':
-        $idAtualizacao      = $_SERVER['PATH_INFO'];
-        $dadosAtualizacao   = file_get_contents('php://input');
+    case 'OPTIONS':
+        $pedidos->atualizaPedido();
         break;
     case 'DELETE':
-    case 'OPTIONS':       
+    case 'OPTIONS':
         $pedidos->excluiPedido();
-        break; 
+        break;
     default:
-        echo json_encode(['erro' => 'Método não suportado']);    
+        echo json_encode(['erro' => true, 'msg' => 'Método não suportado']);
 }
