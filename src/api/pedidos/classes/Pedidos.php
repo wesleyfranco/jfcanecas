@@ -17,7 +17,7 @@ class Pedidos extends Base {
         }
     }
 
-    public function salvaPedidos()
+    public function salvaPedido()
     {
         $dados = json_decode(file_get_contents('php://input'));
         $stmt = $this->conexao->prepare('INSERT INTO pedidos (cliente, nome_arte, tipo_caneca, qtd_itens, valor_total, data_entrega) 
@@ -32,5 +32,13 @@ class Pedidos extends Base {
         ));
         
         echo json_encode(['numPedido' =>  $stmt->rowCount()]); 
+    }
+
+    public function excluiPedido()
+    {
+        $dados = json_decode(file_get_contents('php://input'));
+        $stmt = $this->conexao->prepare('DELETE FROM pedidos WHERE id = :id');
+        $stmt->bindParam(':id', $id); 
+        $stmt->execute();
     }
 }

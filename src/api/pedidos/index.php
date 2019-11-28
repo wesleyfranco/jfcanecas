@@ -14,7 +14,7 @@ switch ($metodoHttp) {
         break;
     case 'POST':
     case 'OPTIONS':
-        $pedidos->salvaPedidos();
+        $pedidos->salvaPedido();
         break;
     case 'PUT':
         $idAtualizacao      = $_SERVER['PATH_INFO'];
@@ -22,6 +22,7 @@ switch ($metodoHttp) {
         break;
     case 'DELETE':
         $idAtualizacao      = $_SERVER['PATH_INFO'];
+        $this->excluiPedido();
         break; 
     /*default:
         echo json_encode(['erro' => 'Método não suportado']);  */    
