@@ -9,7 +9,7 @@ class Pedidos extends Base {
 
     public function retornaPedidos()
     {
-        $stmt = $this->conexao->prepare('SELECT * FROM pedidos');
+        $stmt = $this->conexao->prepare('SELECT * FROM pedidos ORDER BY data_entrega ASC');
         $stmt->execute();
         $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if (count($pedidos) > 0) {
