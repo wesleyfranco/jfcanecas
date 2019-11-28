@@ -1,14 +1,18 @@
 import React, {Component } from 'react';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 import Form from '../form/Form';
 import Input from '../form/Input';
 import Button from '../form/Button';
 import Breadcrumb from '../template/Breadcrumb';
 
+const URL = 'http://localhost:8080/';
+
 class Cadastro extends Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = { redireciona: false }
         this.handleChange   = this.handleChange.bind(this)
         this.handleClick    = this.handleClick.bind(this)
     }
@@ -20,10 +24,19 @@ class Cadastro extends Component {
     }
     handleClick(e) {
         e.preventDefault()
-        // Faz o cadastro
-        console.log(this.state)
+        const dados = this.state
+        axios.post(URL, { ...dados })
+        .then(resposta => {
+            if (resposta.data.numPedido > 0) {
+                this.setState( { redireciona: true } )
+            }
+        });
     }
     render() {
+        const { redireciona } = this.state;
+        if (redireciona) {
+            return <Redirect to='/pedidos'/>;
+        }
         return (
             <div>
                 <Breadcrumb itemAtivo="Cadastro" mostraHome={true} />
