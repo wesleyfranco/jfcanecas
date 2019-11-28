@@ -13,7 +13,7 @@ switch ($metodoHttp) {
         $pedidos->retornaPedidos($pesquisa);
         break;
     case 'POST':
-        echo "POST";
+        $pedidos->salvaPedidos();
         break;
     case 'PUT':
         $idAtualizacao      = $_SERVER['PATH_INFO'];
