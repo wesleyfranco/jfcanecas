@@ -2,6 +2,7 @@ import React from 'react';
 
 import BotaoAcao from './BotaoAcao';
 import { ConverteDataBr } from '../utils/utils';
+import './ItensPedido.css';
 
 const ItensPedido = (props) => {
     if (props.lista.length) {
