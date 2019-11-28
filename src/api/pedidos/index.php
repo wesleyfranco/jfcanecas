@@ -4,7 +4,7 @@ require_once 'classes/Pedidos.php';
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, PATCH, DELETE");
 
 $pedidos    = new Pedidos;
 $metodoHttp = $_SERVER['REQUEST_METHOD'];
