@@ -1,6 +1,5 @@
 import React, {Component } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 import Form from '../form/Form';
 import Input from '../form/Input';
@@ -28,15 +27,11 @@ class Cadastro extends Component {
         axios.post(URL, { ...dados })
         .then(resposta => {
             if (resposta.data.numPedido > 0) {
-                this.setState( { redireciona: true } )
+                this.props.history.push('/pedidos');
             }
         });
     }
     render() {
-        const { redireciona } = this.state;
-        if (redireciona) {
-            return <Redirect to='/pedidos'/>;
-        }
         return (
             <div>
                 <Breadcrumb itemAtivo="Cadastro" mostraHome={true} />
