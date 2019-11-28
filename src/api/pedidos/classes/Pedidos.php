@@ -9,6 +9,7 @@ class Pedidos extends Base {
 
     public function retornaPedidos()
     {
+        $pesquisa = (isset($_GET['cliente'])) ? $_GET['cliente'] : '';
         $stmt = $this->conexao->prepare('SELECT * FROM pedidos ORDER BY data_entrega ASC');
         $stmt->execute();
         $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -22,16 +23,15 @@ class Pedidos extends Base {
         $dados = json_decode(file_get_contents('php://input'));
         $stmt = $this->conexao->prepare('INSERT INTO pedidos (cliente, nome_arte, tipo_caneca, qtd_itens, valor_total, data_entrega) 
             VALUES(:cliente, :nome_arte, :tipo_caneca, :qtd_itens, :valor_total, :data_entrega)');
-        $stmt->execute(array(
-            ':cliente' => $dados->cliente,
-            ':nome_arte' => $dados->nome_arte,
-            ':tipo_caneca' =>$dados->tipo_caneca,
-            ':qtd_itens' => $dados->qtd_itens,
-            ':valor_total' => $dados->valor_total,
-            ':data_entrega' => $dados->data_entrega,
-        ));
+        $stmt->bindParam(':cliente', $dados->cliente);
+        $stmt->bindParam(':nome_arte', $dados->nome_arte);
+        $stmt->bindParam(':tipo_caneca', $dados->tipo_caneca);
+        $stmt->bindParam(':qtd_itens', $dados->qtd_itens);
+        $stmt->bindParam(':valor_total', $dados->valor_total);
+        $stmt->bindParam(':data_entrega', $dados->data_entrega);
+        $stmt->execute();
         
-        echo json_encode(['numPedido' =>  $stmt->rowCount()]); 
+        echo json_encode(['numPedido' =>  $stmt->rowCount()]);
     }
 
     public function excluiPedido()
@@ -39,7 +39,7 @@ class Pedidos extends Base {
         $parametrosUrl  = explode('/', $_SERVER['PATH_INFO']);
         $id             = (int) $parametrosUrl[1];
         $stmt           = $this->conexao->prepare('DELETE FROM pedidos WHERE id = :id');
-        $stmt->bindParam(':id', $id); 
+        $stmt->bindParam(':id', $id);
         if ($stmt->execute() ) {
             echo json_encode(['erro' => false, 'msg' => 'Pedido excluido com sucesso']);
         } else {
