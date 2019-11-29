@@ -16,11 +16,16 @@ class Pedidos extends Component {
         this.handleChangePesquisa = this.handleChangePesquisa.bind(this)
         this.handlePesquisa = this.handlePesquisa.bind(this)
         this.handleLimpar = this.handleLimpar.bind(this)
-
+        this.pesquisou = this.pesquisou.bind(this)
+        
         this.atualiza()
     }
-    atualiza() {        
-        axios.get(URL)
+    atualiza(comPesquisa) {
+        let pesquisa = ''
+        if (comPesquisa) {
+            pesquisa = `?cliente=${this.state.pesquisa_cliente}`
+        }       
+        axios.get(`${URL}${pesquisa}`)
         .then((resposta) => {
             this.setState({ lista: resposta.data })
         })
@@ -30,7 +35,7 @@ class Pedidos extends Component {
         axios.patch(`${URL}${idPedido}`, { entregue: true })
         .then((resposta) => {
             if (resposta.data.erro === false) {
-                this.atualiza();
+                this.atualiza(this.pesquisou());
             } else {
                 alert(resposta.data.msg)
             }
@@ -40,8 +45,8 @@ class Pedidos extends Component {
         const idPedido = objeto.id;
         axios.delete(`${URL}${idPedido}`)
         .then(resposta => {
-            if (resposta.data.erro === false) {
-                this.atualiza();
+            if (resposta.data.erro === false) {               
+                this.atualiza(this.pesquisou());
             } else {
                 alert(resposta.data.msg)
             }
@@ -54,11 +59,16 @@ class Pedidos extends Component {
         const cliente = this.state.pesquisa_cliente
         axios.get(`${URL}?cliente=${cliente}`)
         .then(resposta => {
-            console.log(resposta)
+            this.atualiza(true)
         });
     }
     handleLimpar() {
-        this.setState({ ...this.state, pesquisa_cliente: '' })
+        this.setState({ pesquisa_cliente: '' })
+        this.atualiza(false)
+    }
+    pesquisou() {
+        const temPesquisa = this.state.pesquisa_cliente ? true : false;
+        return temPesquisa
     }
     render() {
         return (
