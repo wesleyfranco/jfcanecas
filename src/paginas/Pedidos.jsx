@@ -3,15 +3,19 @@ import axios from 'axios';
 
 import Breadcrumb from '../template/Breadcrumb';
 import ItensPedido from '../template/ItensPedido';
+import Pesquisa from '../template/Pesquisa';
 
 const URL = 'http://localhost:8080/';
 
 class Pedidos extends Component {
     constructor(props) {
         super(props)
-        this.state = { lista: [] }
+        this.state = { lista: [], pesquisa_cliente: '' }
         this.handleMarcaEntregue = this.handleMarcaEntregue.bind(this)
         this.handleExclui = this.handleExclui.bind(this)
+        this.handleChangePesquisa = this.handleChangePesquisa.bind(this)
+        this.handlePesquisa = this.handlePesquisa.bind(this)
+        this.handleLimpar = this.handleLimpar.bind(this)
 
         this.atualiza()
     }
@@ -43,9 +47,23 @@ class Pedidos extends Component {
             }
         })
     }
+    handleChangePesquisa(e) {
+        this.setState({ pesquisa_cliente: e.target.value })
+    }
+    handlePesquisa() {
+        const cliente = this.state.pesquisa_cliente
+        axios.get(`${URL}?cliente=${cliente}`)
+        .then(resposta => {
+            console.log(resposta)
+        });
+    }
+    handleLimpar() {
+        this.setState({ ...this.state, pesquisa_cliente: '' })
+    }
     render() {
         return (
             <div>
+                <Pesquisa handleChangePesquisa={this.handleChangePesquisa} handlePesquisa={this.handlePesquisa} handleLimpar={this.handleLimpar} valor={this.state} />
                 <Breadcrumb itemAtivo="Pedidos" mostraHome={false} />
                 <table className="table table-dark">
                     <thead className="thead-light">
