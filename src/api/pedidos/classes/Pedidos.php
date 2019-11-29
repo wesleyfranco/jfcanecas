@@ -30,7 +30,7 @@ class Pedidos extends Base {
         $stmt->bindParam(':nome_arte', $dados->nome_arte);
         $stmt->bindParam(':tipo_caneca', $dados->tipo_caneca);
         $stmt->bindParam(':qtd_itens', $dados->qtd_itens);
-        $stmt->bindParam(':valor_total', $dados->valor_total);
+        $stmt->bindParam(':valor_total', floatval($dados->valor_total));
         $stmt->bindParam(':data_entrega', $dados->data_entrega);
         $stmt->execute();
         
