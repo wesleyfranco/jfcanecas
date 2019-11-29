@@ -10,7 +10,9 @@ const Pesquisa = (props) => (
             <Input tipo="search" nome="pesquisa_cliente" descricao="Digite o nome do cliente" handleChange={props.handleChangePesquisa} valor={props.valor} />
         </MontaGrid>
         <MontaGrid colunas="12 12 2 2" semLinha={true}>
-            <Button icone="search" classe="info" handleClick={props.handlePesquisa} />
+            <span className="mr-2">
+                <Button icone="search" classe="info" handleClick={props.handlePesquisa} />
+            </span>
             <Button icone="close" classe="danger" handleClick={props.handleLimpar} />
         </MontaGrid>
     </div>
