@@ -5,9 +5,9 @@ import Button from '../template/BotaoAcao';
 
 const Pesquisa = (props) => (
     <div>
-        <Input tipo="search" nome="pesquisa_cliente" descricao="Digite o nome do cliente" handleChange={props.handleChange} />
+        <Input tipo="search" nome="pesquisa_cliente" descricao="Digite o nome do cliente" handleChange={props.handleChangePesquisa} valor={props.valor} />
         <Button icone="search" classe="info" handleClick={props.handlePesquisa} />
-        <Button icone="close" classe="default" handleClick={props.handleLimpar} />
+        <Button icone="close" classe="danger" handleClick={props.handleLimpar} />
     </div>
 )
 
