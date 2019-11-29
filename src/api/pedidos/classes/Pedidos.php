@@ -9,8 +9,11 @@ class Pedidos extends Base {
 
     public function retornaPedidos()
     {
-        $pesquisa = (isset($_GET['cliente'])) ? $_GET['cliente'] : '';
-        $stmt = $this->conexao->prepare('SELECT * FROM pedidos ORDER BY data_entrega ASC');
+        $pesquisa = (isset($_GET['cliente'])) ? " WHERE cliente LIKE :cliente" : '';
+        $stmt = $this->conexao->prepare("SELECT * FROM pedidos {$pesquisa} ORDER BY data_entrega ASC");
+        if (!empty($pesquisa)) {
+            $stmt->bindValue(':cliente', '%' . $_GET['cliente'] . '%');
+        }
         $stmt->execute();
         $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if (count($pedidos) > 0) {
