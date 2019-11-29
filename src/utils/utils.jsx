@@ -11,12 +11,19 @@ const MontaGrid = (props) => {
     let classesColunas = `col-xs-${numeroColunas[0]}`
     classesColunas += ` col-sm-${numeroColunas[1]}`
     classesColunas += ` col-md-${numeroColunas[2]}`
-    classesColunas += ` col-lg-${numeroColunas[3]}`   
-    return (
-        <div className="row mb-2">
-            <div className={classesColunas}>
-                {props.children}
+    classesColunas += ` col-lg-${numeroColunas[3]}`
+    if (!props.semLinha) {
+        return (
+            <div className="row mb-2">
+                <div className={classesColunas}>
+                    {props.children}
+                </div>
             </div>
+        )
+    }
+    return (
+        <div className={classesColunas}>
+            {props.children}
         </div>
     )
 }
