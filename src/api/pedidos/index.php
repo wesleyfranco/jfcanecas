@@ -17,10 +17,6 @@ switch ($metodoHttp) {
     case 'OPTIONS':
         $pedidos->salvaPedido();
         break;
-    case 'PUT':
-    case 'OPTIONS':
-        $pedidos->atualizaPedido();
-        break;
     case 'PATCH':
     case 'OPTIONS':
         $pedidos->atualizaEntregaPedido();
