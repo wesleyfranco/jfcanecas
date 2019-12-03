@@ -48,6 +48,22 @@ const MostraErros = (erros) => {
     }
     return null
 }
+
+const MostraSucessos = (msg_sucessos) => {
+    if (msg_sucessos.length) {
+        let listaSucessos = msg_sucessos.map((sucesso, indice) => {
+            return <li key={indice}>{sucesso}</li>
+        })
+        return (
+            <div className="alert alert-success" role="alert">
+                <ul>
+                    {listaSucessos}
+                </ul>
+            </div>
+        )
+    }
+    return null
+}
     
 
-export { ConverteDataBr, MontaGrid, FormataDinheiro, MostraErros }
+export { ConverteDataBr, MontaGrid, FormataDinheiro, MostraErros, MostraSucessos }
