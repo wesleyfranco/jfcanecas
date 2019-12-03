@@ -59,9 +59,10 @@ class Pedidos extends Base {
         $stmt           = $this->conexao->prepare('UPDATE pedidos SET entregue = :entregue WHERE id = :id');
         $stmt->bindParam(':entregue', $dados->entregue);
         $stmt->bindParam(':id', $id);
-        if ($stmt->execute() ) {
+        try {
+            $stmt->execute();
             echo json_encode(['erro' => false, 'msg' => 'Pedido entregue']);
-        } else {
+        } catch(PDOException $e) {
             echo json_encode(['erro' => true, 'msg' => 'Erro ao entregar pedido']);
         }
     }
