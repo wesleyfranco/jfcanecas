@@ -32,6 +32,22 @@ const formataDinheiro = (valor) => {
     valor = parseFloat(valor)
 	return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
+
+const MostraErros = (erros) => {
+    if (erros.length) {
+        let listaErros = erros.map((erro, indice) => {
+            return <li key={indice}>{erro}</li>
+        })
+        return (
+            <div className="alert alert-danger" role="alert">
+                <ul>
+                    {listaErros}
+                </ul>
+            </div>
+        )
+    }
+    return null
+}
     
 
-export { ConverteDataBr, MontaGrid, formataDinheiro }
+export { ConverteDataBr, MontaGrid, formataDinheiro, MostraErros }
