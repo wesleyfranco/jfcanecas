@@ -13,11 +13,13 @@ class Pedidos extends Base {
         $stmt = $this->conexao->prepare("SELECT * FROM pedidos {$pesquisa} ORDER BY data_entrega ASC");
         if (!empty($pesquisa)) {
             $stmt->bindValue(':cliente', '%' . $_GET['cliente'] . '%');
-        }
-        $stmt->execute();
-        $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if (count($pedidos) > 0) {
+        }     
+        try {
+            $stmt->execute();
+            $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($pedidos);
+        } catch(PDOException $e) {
+            echo json_encode(['erro' => true, 'msg' => 'Erro ao pesquisar cliente']);
         }
     }
 
