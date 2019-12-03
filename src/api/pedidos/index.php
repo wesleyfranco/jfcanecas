@@ -14,17 +14,16 @@ switch ($metodoHttp) {
         $pedidos->retornaPedidos();
         break;
     case 'POST':
-    case 'OPTIONS':
         $pedidos->salvaPedido();
         break;
     case 'PATCH':
-    case 'OPTIONS':
         $pedidos->atualizaEntregaPedido();
         break;    
     case 'DELETE':
-    case 'OPTIONS':
         $pedidos->excluiPedido();
         break;
+    case 'OPTIONS':    
+    break;
     default:
         echo json_encode(['erro' => true, 'msg' => 'Método não suportado']);
 }
