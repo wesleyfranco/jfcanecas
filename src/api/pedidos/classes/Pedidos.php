@@ -12,7 +12,7 @@ class Pedidos extends Base {
         $pesquisa = (isset($_GET['cliente'])) ? " WHERE cliente LIKE :cliente" : '';
         $stmt = $this->conexao->prepare("SELECT * FROM pedidos {$pesquisa} ORDER BY data_entrega ASC");
         if (!empty($pesquisa)) {
-            $stmt->bindValue(':cliente', '%' . $_GET['cliente'] . '%');
+            $stmt->bindValue(':cliente', '%' . $_GET['cliente'] . '%', PDO::PARAM_STR);
         }     
         try {
             $stmt->execute();
@@ -29,10 +29,10 @@ class Pedidos extends Base {
         $stmt = $this->conexao->prepare('INSERT INTO pedidos (cliente, nome_arte, tipo_caneca, qtd_itens, valor_total, data_entrega) 
             VALUES(:cliente, :nome_arte, :tipo_caneca, :qtd_itens, :valor_total, :data_entrega)');
         $valorTotal = floatval($dados->valor_total);
-        $stmt->bindParam(':cliente', $dados->cliente);
-        $stmt->bindParam(':nome_arte', $dados->nome_arte);
-        $stmt->bindParam(':tipo_caneca', $dados->tipo_caneca);
-        $stmt->bindParam(':qtd_itens', $dados->qtd_itens);
+        $stmt->bindParam(':cliente', $dados->cliente, PDO::PARAM_STR);
+        $stmt->bindParam(':nome_arte', $dados->nome_arte, PDO::PARAM_STR);
+        $stmt->bindParam(':tipo_caneca', $dados->tipo_caneca, PDO::PARAM_STR);
+        $stmt->bindParam(':qtd_itens', $dados->qtd_itens, PDO::PARAM_INT);
         $stmt->bindParam(':valor_total', $valorTotal);
         $stmt->bindParam(':data_entrega', $dados->data_entrega);
         $stmt->execute();
@@ -60,7 +60,7 @@ class Pedidos extends Base {
         $id             = (int) $parametrosUrl[1];
         $dados          = json_decode(file_get_contents('php://input'));
         $stmt           = $this->conexao->prepare('UPDATE pedidos SET entregue = :entregue WHERE id = :id');
-        $stmt->bindParam(':entregue', $dados->entregue);
+        $stmt->bindParam(':entregue', $dados->entregue, PDO::PARAM_BOOL);
         $stmt->bindParam(':id', $id);
         try {
             $stmt->execute();
