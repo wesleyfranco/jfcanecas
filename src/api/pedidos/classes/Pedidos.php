@@ -37,7 +37,7 @@ class Pedidos extends Base {
         $stmt->bindValue(':data_entrega', !empty($dados->data_entrega) ? $dados->data_entrega : null);
         try {
             $stmt->execute();
-            echo json_encode(['erro' => false, 'numPedido' =>  $stmt->rowCount()]);
+            echo json_encode(['erro' => false, 'msg' =>  'Pedido cadastrado com sucesso']);
         } catch(PDOException $e) {
             echo json_encode(['erro' => true, 'msg' => 'Erro ao cadastrar pedido']);
         }    
