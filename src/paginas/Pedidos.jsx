@@ -12,7 +12,7 @@ const URL = RetornaUrlApi();
 class Pedidos extends Component {
     constructor(props) {
         super(props)
-        this.state = { lista: [], pesquisa_cliente: '', erros: [] }
+        this.state = { lista: [], pesquisa_cliente: '', erros: [], msg_sucesso: [] }
         this.handleMarcaEntregue = this.handleMarcaEntregue.bind(this)
         this.handleExclui = this.handleExclui.bind(this)
         this.handleChangePesquisa = this.handleChangePesquisa.bind(this)
@@ -43,9 +43,14 @@ class Pedidos extends Component {
         axios.patch(`${URL}${idPedido}`, { entregue: true })
         .then((resposta) => {
             if (resposta.data.erro === false) {
+                const msg_sucesso = this.state.msg_sucesso
+                msg_sucesso.push(resposta.data.msg)
+                this.setState( {msg_sucesso: msg_sucesso} )
                 this.atualiza(this.pesquisou());
             } else {
-                alert(resposta.data.msg)
+                const erros = this.state.erros
+                erros.push(resposta.data.msg)
+                this.setState( {erros: erros} )
             }
         })
     }
