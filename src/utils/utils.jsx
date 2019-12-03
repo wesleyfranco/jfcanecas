@@ -79,6 +79,19 @@ const ControlaMensagens = (resposta, objThis) => {
         objThis.setState( { msg_sucesso: [] } )
     }
 }
+
+const LimpaMensagens = (objThis) => {
+    objThis.setState( { erros: [] } )
+    objThis.setState( { msg_sucesso: [] } )
+}
     
 
-export { ConverteDataBr, MontaGrid, FormataDinheiro, MostraErros, MostraSucessos, ControlaMensagens }
+export { 
+    ConverteDataBr, 
+    MontaGrid, 
+    FormataDinheiro, 
+    MostraErros, 
+    MostraSucessos, 
+    ControlaMensagens,
+    LimpaMensagens 
+}
