@@ -5,7 +5,7 @@ import Breadcrumb from '../template/Breadcrumb';
 import ItensPedido from '../template/ItensPedido';
 import Pesquisa from '../template/Pesquisa';
 import { RetornaUrlApi } from '../utils/config';
-import { MostraErros } from '../utils/utils';
+import { MostraErros, MostraSucessos } from '../utils/utils';
 
 const URL = RetornaUrlApi();
 
@@ -85,12 +85,17 @@ class Pedidos extends Component {
     }
     render() {
         let erros = ''
+        let msg_sucesso = ''
         if (this.state.erros.length) {
             erros = MostraErros(this.state.erros)
+        }
+        if (this.state.msg_sucesso.length) {
+            msg_sucesso = MostraSucessos(this.state.msg_sucesso)
         }
         return (            
             <div>
                 {erros}
+                {msg_sucesso}
                 <Pesquisa handleChangePesquisa={this.handleChangePesquisa} handlePesquisa={this.handlePesquisa} handleLimpar={this.handleLimpar} valor={this.state} />
                 <Breadcrumb itemAtivo="Pedidos" mostraHome={false} />
                 <table className="table table-dark">
