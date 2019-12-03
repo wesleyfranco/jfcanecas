@@ -64,6 +64,21 @@ const MostraSucessos = (msg_sucessos) => {
     }
     return null
 }
+
+const ControlaMensagens = (resposta, objThis) => {
+    if (resposta.data.erro === false) {
+        const msg_sucesso = []
+        msg_sucesso.push(resposta.data.msg)
+        objThis.setState( { msg_sucesso: msg_sucesso } )
+        objThis.setState( { erros: [] } )
+        objThis.atualiza(objThis.pesquisou());
+    } else {
+        const erros = []
+        erros.push(resposta.data.msg)
+        objThis.setState( { erros: erros } )
+        objThis.setState( { msg_sucesso: [] } )
+    }
+}
     
 
-export { ConverteDataBr, MontaGrid, FormataDinheiro, MostraErros, MostraSucessos }
+export { ConverteDataBr, MontaGrid, FormataDinheiro, MostraErros, MostraSucessos, ControlaMensagens }
