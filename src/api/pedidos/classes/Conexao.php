@@ -13,7 +13,7 @@ abstract class Conexao {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $conn->exec("set names utf8");
         } catch(PDOException $e) {
-            echo json_encode(['erro' => $e->getMessage()]);
+            echo json_encode(['erro' => true, 'msg' => $e->getMessage()]);
             exit;
         }
         return $conn;
