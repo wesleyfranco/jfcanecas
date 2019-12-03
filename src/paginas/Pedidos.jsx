@@ -11,7 +11,7 @@ const URL = RetornaUrlApi();
 class Pedidos extends Component {
     constructor(props) {
         super(props)
-        this.state = { lista: [], pesquisa_cliente: '' }
+        this.state = { lista: [], pesquisa_cliente: '', erros: [] }
         this.handleMarcaEntregue = this.handleMarcaEntregue.bind(this)
         this.handleExclui = this.handleExclui.bind(this)
         this.handleChangePesquisa = this.handleChangePesquisa.bind(this)
@@ -28,7 +28,13 @@ class Pedidos extends Component {
         }       
         axios.get(`${URL}${pesquisa}`)
         .then((resposta) => {
-            this.setState({ lista: resposta.data })
+            if (resposta.data.erro) {
+                const erros = this.state.erros
+                erros.push(resposta.data.msg)
+                this.setState( {erros: erros} )
+            } else {
+                this.setState({ lista: resposta.data })
+            }
         })
     }
     handleMarcaEntregue(objeto) {
