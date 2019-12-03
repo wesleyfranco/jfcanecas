@@ -28,16 +28,19 @@ class Pedidos extends Base {
         $dados = json_decode(file_get_contents('php://input'));
         $stmt = $this->conexao->prepare('INSERT INTO pedidos (cliente, nome_arte, tipo_caneca, qtd_itens, valor_total, data_entrega) 
             VALUES(:cliente, :nome_arte, :tipo_caneca, :qtd_itens, :valor_total, :data_entrega)');
-        $valorTotal = floatval($dados->valor_total);
-        $stmt->bindParam(':cliente', $dados->cliente, PDO::PARAM_STR);
-        $stmt->bindParam(':nome_arte', $dados->nome_arte, PDO::PARAM_STR);
-        $stmt->bindParam(':tipo_caneca', $dados->tipo_caneca, PDO::PARAM_STR);
-        $stmt->bindParam(':qtd_itens', $dados->qtd_itens, PDO::PARAM_INT);
-        $stmt->bindParam(':valor_total', $valorTotal);
-        $stmt->bindParam(':data_entrega', $dados->data_entrega);
-        $stmt->execute();
-        
-        echo json_encode(['numPedido' =>  $stmt->rowCount()]);
+        $valorTotal = (!empty($dados->valor_total)) ? floatval($dados->valor_total) : null;
+        $stmt->bindValue(':cliente', !empty($dados->cliente) ? $dados->cliente : null, PDO::PARAM_STR);
+        $stmt->bindValue(':nome_arte', !empty($dados->nome_arte) ? $dados->nome_arte : null, PDO::PARAM_STR);
+        $stmt->bindValue(':tipo_caneca', !empty($dados->tipo_caneca) ? $dados->tipo_caneca : null, PDO::PARAM_STR);
+        $stmt->bindValue(':qtd_itens', !empty($dados->qtd_itens) ? $dados->qtd_itens : null, PDO::PARAM_INT);
+        $stmt->bindValue(':valor_total', $valorTotal);
+        $stmt->bindValue(':data_entrega', !empty($dados->data_entrega) ? $dados->data_entrega : null);
+        try {
+            $stmt->execute();
+            echo json_encode(['erro' => false, 'numPedido' =>  $stmt->rowCount()]);
+        } catch(PDOException $e) {
+            echo json_encode(['erro' => true, 'msg' => 'Erro ao cadastrar pedido']);
+        }    
     }
 
     public function excluiPedido()
