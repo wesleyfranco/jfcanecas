@@ -39,7 +39,7 @@ class Pedidos extends Base {
             $stmt->execute();
             echo json_encode(['erro' => false, 'msg' =>  'Pedido cadastrado com sucesso']);
         } catch(PDOException $e) {
-            echo json_encode(['erro' => true, 'msg' => 'Erro ao cadastrar pedido']);
+            echo json_encode(['erro' => true, 'msg' => 'Erro ao cadastrar pedido, verifique se todos os campos estão preenchidos']);
         }    
     }
 
