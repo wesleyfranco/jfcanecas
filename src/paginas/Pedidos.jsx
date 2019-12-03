@@ -43,14 +43,16 @@ class Pedidos extends Component {
         axios.patch(`${URL}${idPedido}`, { entregue: true })
         .then((resposta) => {
             if (resposta.data.erro === false) {
-                const msg_sucesso = this.state.msg_sucesso
+                const msg_sucesso = []
                 msg_sucesso.push(resposta.data.msg)
-                this.setState( {msg_sucesso: msg_sucesso} )
+                this.setState( { msg_sucesso: msg_sucesso } )
+                this.setState( { erros: [] } )
                 this.atualiza(this.pesquisou());
             } else {
-                const erros = this.state.erros
+                const erros = []
                 erros.push(resposta.data.msg)
-                this.setState( {erros: erros} )
+                this.setState( { erros: erros } )
+                this.setState( { msg_sucesso: [] } )
             }
         })
     }
