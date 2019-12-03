@@ -4,8 +4,9 @@ import axios from 'axios';
 import Breadcrumb from '../template/Breadcrumb';
 import ItensPedido from '../template/ItensPedido';
 import Pesquisa from '../template/Pesquisa';
+import { RetornaUrlApi } from '../utils/config';
 
-const URL = 'http://localhost:8080/';
+const URL = RetornaUrlApi();
 
 class Pedidos extends Component {
     constructor(props) {

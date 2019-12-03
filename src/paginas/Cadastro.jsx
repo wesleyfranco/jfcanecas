@@ -6,8 +6,9 @@ import Input from '../form/Input';
 import Button from '../form/Button';
 import Breadcrumb from '../template/Breadcrumb';
 import { MontaGrid } from '../utils/utils';
+import { RetornaUrlApi } from '../utils/config';
 
-const URL = 'http://localhost:8080/';
+const URL = RetornaUrlApi();
 
 class Cadastro extends Component {
     constructor(props) {
