@@ -28,7 +28,7 @@ const MontaGrid = (props) => {
     )
 }
 
-const formataDinheiro = (valor) => {
+const FormataDinheiro = (valor) => {
     valor = parseFloat(valor)
 	return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
@@ -50,4 +50,4 @@ const MostraErros = (erros) => {
 }
     
 
-export { ConverteDataBr, MontaGrid, formataDinheiro, MostraErros }
+export { ConverteDataBr, MontaGrid, FormataDinheiro, MostraErros }

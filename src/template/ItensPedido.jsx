@@ -1,7 +1,7 @@
 import React from 'react';
 
 import BotaoAcao from './BotaoAcao';
-import { ConverteDataBr, formataDinheiro } from '../utils/utils';
+import { ConverteDataBr, FormataDinheiro } from '../utils/utils';
 import './ItensPedido.css';
 
 const ItensPedido = (props) => {
@@ -21,7 +21,7 @@ const ItensPedido = (props) => {
                     {objeto.qtd_itens}
                 </td>
                 <td>
-                    {formataDinheiro(objeto.valor_total)}
+                    {FormataDinheiro(objeto.valor_total)}
                 </td>
                 <td>
                     {ConverteDataBr(objeto.data_entrega)}
