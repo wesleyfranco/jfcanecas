@@ -5,7 +5,7 @@ import Breadcrumb from '../template/Breadcrumb';
 import ItensPedido from '../template/ItensPedido';
 import Pesquisa from '../template/Pesquisa';
 import { RetornaUrlApi } from '../utils/config';
-import { MostraErros, MostraSucessos } from '../utils/utils';
+import { MostraErros, MostraSucessos, ControlaMensagens, LimpaMensagens } from '../utils/utils';
 
 const URL = RetornaUrlApi();
 
@@ -30,9 +30,9 @@ class Pedidos extends Component {
         axios.get(`${URL}${pesquisa}`)
         .then((resposta) => {
             if (resposta.data.erro) {
-                const erros = this.state.erros
+                const erros = []
                 erros.push(resposta.data.msg)
-                this.setState( {erros: erros} )
+                this.setState( { erros: erros } )
             } else {
                 this.setState({ lista: resposta.data })
             }
@@ -42,29 +42,16 @@ class Pedidos extends Component {
         const idPedido = objeto.id;
         axios.patch(`${URL}${idPedido}`, { entregue: true })
         .then((resposta) => {
-            if (resposta.data.erro === false) {
-                const msg_sucesso = []
-                msg_sucesso.push(resposta.data.msg)
-                this.setState( { msg_sucesso: msg_sucesso } )
-                this.setState( { erros: [] } )
-                this.atualiza(this.pesquisou());
-            } else {
-                const erros = []
-                erros.push(resposta.data.msg)
-                this.setState( { erros: erros } )
-                this.setState( { msg_sucesso: [] } )
-            }
+            LimpaMensagens(this)
+            ControlaMensagens(resposta, this)
         })
     }
     handleExclui(objeto) {
         const idPedido = objeto.id;
         axios.delete(`${URL}${idPedido}`)
         .then(resposta => {
-            if (resposta.data.erro === false) {               
-                this.atualiza(this.pesquisou());
-            } else {
-                alert(resposta.data.msg)
-            }
+            LimpaMensagens(this)
+            ControlaMensagens(resposta, this)
         })
     }
     handleChangePesquisa(e) {
@@ -74,10 +61,17 @@ class Pedidos extends Component {
         const cliente = this.state.pesquisa_cliente
         axios.get(`${URL}?cliente=${cliente}`)
         .then(resposta => {
+            LimpaMensagens(this)
+            if (resposta.data.erro) {
+                this.setState( { erros: [resposta.data.msg] } )
+                this.setState( { msg_sucesso: [] } )
+                this.setState( { lista: [] } )
+            }
             this.atualiza(true)
         });
     }
     handleLimpar() {
+        LimpaMensagens(this)
         this.setState({ pesquisa_cliente: '' })
         this.atualiza(false)
     }
