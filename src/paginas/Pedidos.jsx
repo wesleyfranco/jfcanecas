@@ -5,6 +5,7 @@ import Breadcrumb from '../template/Breadcrumb';
 import ItensPedido from '../template/ItensPedido';
 import Pesquisa from '../template/Pesquisa';
 import { RetornaUrlApi } from '../utils/config';
+import { MostraErros } from '../utils/utils';
 
 const URL = RetornaUrlApi();
 
@@ -78,8 +79,13 @@ class Pedidos extends Component {
         return temPesquisa
     }
     render() {
-        return (
+        let erros = ''
+        if (this.state.erros.length) {
+            erros = MostraErros(this.state.erros)
+        }
+        return (            
             <div>
+                {erros}
                 <Pesquisa handleChangePesquisa={this.handleChangePesquisa} handlePesquisa={this.handlePesquisa} handleLimpar={this.handleLimpar} valor={this.state} />
                 <Breadcrumb itemAtivo="Pedidos" mostraHome={false} />
                 <table className="table table-dark">
