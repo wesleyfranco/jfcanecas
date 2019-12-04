@@ -14,7 +14,8 @@ class Cadastro extends Component {
     constructor(props) {
         super(props)
         this.state = { 
-            cliente: '', 
+            cliente: '',
+            telefone: '',
             nome_arte: '', 
             tipo_caneca: '', 
             qtd_itens: '', 
@@ -40,7 +41,8 @@ class Cadastro extends Component {
             LimpaMensagens(this)
             if (resposta.data.erro === false) {
                 this.setState( { 
-                    cliente: '', 
+                    cliente: '',
+                    telefone: '',
                     nome_arte: '', 
                     tipo_caneca: '', 
                     qtd_itens: '', 
@@ -71,6 +73,9 @@ class Cadastro extends Component {
                 <Form nome="cadastro">
                     <MontaGrid colunas="12 12 12 12">
                         <Input tipo="text" nome="cliente" descricao="Nome do cliente" handleChange={this.handleChange} valor={this.state} />
+                    </MontaGrid>
+                    <MontaGrid colunas="12 12 12 12">
+                        <Input tipo="text" nome="telefone" descricao="Telefone do cliente" handleChange={this.handleChange} valor={this.state} />
                     </MontaGrid>
                     <MontaGrid colunas="12 12 12 12">
                         <Input tipo="text" nome="nome_arte" descricao="Nome da arte" handleChange={this.handleChange} valor={this.state} />

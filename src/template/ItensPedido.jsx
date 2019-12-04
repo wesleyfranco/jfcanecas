@@ -12,6 +12,9 @@ const ItensPedido = (props) => {
                     {objeto.cliente}
                 </td>
                 <td>
+                    {objeto.telefone}
+                </td>
+                <td>
                     {objeto.nome_arte}
                 </td>
                 <td>
@@ -37,7 +40,7 @@ const ItensPedido = (props) => {
     }
     return (
         <tr>
-            <td colSpan="7">
+            <td colSpan="8">
                 <h5 className="text-center">Nenhum pedido encontrado</h5>
             </td>
         </tr>

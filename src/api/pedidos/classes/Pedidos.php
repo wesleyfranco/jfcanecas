@@ -26,10 +26,11 @@ class Pedidos extends Base {
     public function salvaPedido()
     {
         $dados = json_decode(file_get_contents('php://input'));
-        $stmt = $this->conexao->prepare('INSERT INTO pedidos (cliente, nome_arte, tipo_caneca, qtd_itens, valor_total, data_entrega) 
-            VALUES(:cliente, :nome_arte, :tipo_caneca, :qtd_itens, :valor_total, :data_entrega)');
+        $stmt = $this->conexao->prepare('INSERT INTO pedidos (cliente, telefone, nome_arte, tipo_caneca, qtd_itens, valor_total, data_entrega) 
+            VALUES(:cliente, :telefone, :nome_arte, :tipo_caneca, :qtd_itens, :valor_total, :data_entrega)');
         $valorTotal = (!empty($dados->valor_total)) ? floatval($dados->valor_total) : null;
         $stmt->bindValue(':cliente', !empty($dados->cliente) ? $dados->cliente : null, PDO::PARAM_STR);
+        $stmt->bindValue(':telefone', !empty($dados->telefone) ? $dados->telefone : null, PDO::PARAM_STR);
         $stmt->bindValue(':nome_arte', !empty($dados->nome_arte) ? $dados->nome_arte : null, PDO::PARAM_STR);
         $stmt->bindValue(':tipo_caneca', !empty($dados->tipo_caneca) ? $dados->tipo_caneca : null, PDO::PARAM_STR);
         $stmt->bindValue(':qtd_itens', !empty($dados->qtd_itens) ? $dados->qtd_itens : null, PDO::PARAM_INT);

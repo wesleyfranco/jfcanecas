@@ -99,6 +99,7 @@ class Pedidos extends Component {
                         <thead className="thead-light">
                             <tr>
                                 <th scope="col">Cliente</th>
+                                <th scope="col">Telefone</th>
                                 <th scope="col">Arte</th>
                                 <th scope="col">Tipo</th>
                                 <th scope="col">Quantidade</th>
