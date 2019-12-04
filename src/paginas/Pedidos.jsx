@@ -6,6 +6,7 @@ import ItensPedido from '../template/ItensPedido';
 import Pesquisa from '../template/Pesquisa';
 import { RetornaUrlApi } from '../utils/config';
 import { MostraErros, MostraSucessos, ControlaMensagens, LimpaMensagens, TotalAReceber } from '../utils/utils';
+import './Pedidos.css';
 
 const URL = RetornaUrlApi();
 
