@@ -84,7 +84,21 @@ const LimpaMensagens = (objThis) => {
     objThis.setState( { erros: [] } )
     objThis.setState( { msg_sucesso: [] } )
 }
-    
+
+const TotalAReceber = (listaPedidos) => {
+    if (listaPedidos.length) {
+        const totalAReceber = listaPedidos[0].totalAReceber !== null ? listaPedidos[0].totalAReceber : 0
+        return (
+            <tfoot>
+                <tr>
+                    <th scope="row" colSpan="7" className="text-right">Total a receber</th>
+                    <td>{FormataDinheiro(totalAReceber)}</td>
+                </tr>
+            </tfoot>
+        )
+    }
+    return null
+}
 
 export { 
     ConverteDataBr, 
@@ -93,5 +107,6 @@ export {
     MostraErros, 
     MostraSucessos, 
     ControlaMensagens,
-    LimpaMensagens 
+    LimpaMensagens,
+    TotalAReceber
 }
