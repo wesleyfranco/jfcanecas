@@ -5,7 +5,7 @@ import Breadcrumb from '../template/Breadcrumb';
 import ItensPedido from '../template/ItensPedido';
 import Pesquisa from '../template/Pesquisa';
 import { RetornaUrlApi } from '../utils/config';
-import { MostraErros, MostraSucessos, ControlaMensagens, LimpaMensagens } from '../utils/utils';
+import { MostraErros, MostraSucessos, ControlaMensagens, LimpaMensagens, TotalAReceber } from '../utils/utils';
 
 const URL = RetornaUrlApi();
 
@@ -114,6 +114,7 @@ class Pedidos extends Component {
                                 handleMarcaEntregue={this.handleMarcaEntregue} 
                                 handleExclui={this.handleExclui} />
                         </tbody>
+                        {TotalAReceber(this.state.lista)}
                     </table>
                 </div>
             </div>
