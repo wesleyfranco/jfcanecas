@@ -46,7 +46,7 @@ class Pedidos extends Base {
 
     public function excluiPedido()
     {
-        $parametrosUrl  = explode('/', $_SERVER['PATH_INFO']);
+        $parametrosUrl  = (isset($_SERVER['PATH_INFO'])) ? explode('/', $_SERVER['PATH_INFO']) : explode('id=', $_SERVER['QUERY_STRING']);
         $id             = (int) $parametrosUrl[1];
         $stmt           = $this->conexao->prepare('DELETE FROM pedidos WHERE id = :id');
         $stmt->bindParam(':id', $id);
@@ -60,7 +60,7 @@ class Pedidos extends Base {
 
     public function atualizaEntregaPedido()
     {
-        $parametrosUrl  = explode('/', $_SERVER['PATH_INFO']);
+        $parametrosUrl  = (isset($_SERVER['PATH_INFO'])) ? explode('/', $_SERVER['PATH_INFO']) : explode('id=', $_SERVER['QUERY_STRING']);
         $id             = (int) $parametrosUrl[1];
         $dados          = json_decode(file_get_contents('php://input'));
         $stmt           = $this->conexao->prepare('UPDATE pedidos SET entregue = :entregue WHERE id = :id');
