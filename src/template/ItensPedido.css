@@ -3,3 +3,6 @@
     text-decoration: line-through;
     color: #777;
 }
+.coluna-acoes button {
+    margin-bottom: 10px;
+}

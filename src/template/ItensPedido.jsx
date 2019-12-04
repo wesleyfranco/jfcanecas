@@ -29,7 +29,7 @@ const ItensPedido = (props) => {
                 <td>
                     {ConverteDataBr(objeto.data_entrega)}
                 </td>
-                <td>
+                <td className="coluna-acoes">
                     <span className="mr-2">
                         <BotaoAcao icone="check" classe="success" handleClick={() => props.handleMarcaEntregue(objeto)} escondeBotao={(parseInt(objeto.entregue) === 1) ? true : false} />
                     </span>
