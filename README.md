@@ -2,7 +2,7 @@
 <h3>Pequeno sistema de pedidos usando ReactJS e API desenvolvida em PHP</h3>
 <h4>Instruções</h4>
 <ol>
-    <li>Clone o repositório usando git clone https://</li>
+    <li>Clone o repositório usando git clone https://github.com/wesleyfranco/jfcanecas.git</li>
     <li>Entre na pasta do projeto clonado e rode o comando npm i para instalar as dependências</li>
     <li>Inicialize o projeto com o comando npm start</li>
     <li>Adicione os arquivos da API que estão na pasta src/api/pedidos em algum servidor que suporte PHP</li>
