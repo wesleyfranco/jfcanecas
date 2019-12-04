@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS `pedidos`;
 CREATE TABLE IF NOT EXISTS `pedidos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cliente` varchar(265) NOT NULL,
+  `telefone` varchar(15) NOT NULL,
   `nome_arte` varchar(150) NOT NULL,
   `tipo_caneca` varchar(100) NOT NULL,
   `qtd_itens` int(11) NOT NULL,
