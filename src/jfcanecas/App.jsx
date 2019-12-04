@@ -7,7 +7,7 @@ import Template from '../template/Template';
 class App extends Component {
     render() {
         return (          
-            <div className="container">
+            <div className="container-fluid">
                 <Template titulo="JF Canecas" />
             </div>
         )
