@@ -12,7 +12,7 @@ class Pedidos extends Base {
         $pesquisa = (isset($_GET['cliente'])) ? " WHERE cliente LIKE :cliente OR telefone LIKE :telefone" : '';
         $stmt = $this->conexao->prepare("
                 SELECT *, 
-                (SELECT SUM(valor_total) FROM pedidos WHERE entregue=0) AS totalPedidosNaoEntregue 
+                (SELECT SUM(valor_total) FROM pedidos WHERE entregue=0) AS totalAReceber
                 FROM pedidos {$pesquisa} 
                 ORDER BY data_entrega ASC");
         if (!empty($pesquisa)) {
