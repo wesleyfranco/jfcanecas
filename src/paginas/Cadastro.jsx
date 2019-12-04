@@ -75,7 +75,7 @@ class Cadastro extends Component {
                         <Input tipo="text" nome="cliente" descricao="Nome do cliente" handleChange={this.handleChange} valor={this.state} />
                     </MontaGrid>
                     <MontaGrid colunas="12 12 12 12">
-                        <Input tipo="text" nome="telefone" descricao="Telefone do cliente" handleChange={this.handleChange} valor={this.state} />
+                        <Input tipo="tel" nome="telefone" descricao="Telefone do cliente" handleChange={this.handleChange} valor={this.state} />
                     </MontaGrid>
                     <MontaGrid colunas="12 12 12 12">
                         <Input tipo="text" nome="nome_arte" descricao="Nome da arte" handleChange={this.handleChange} valor={this.state} />
