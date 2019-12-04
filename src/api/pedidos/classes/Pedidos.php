@@ -10,7 +10,11 @@ class Pedidos extends Base {
     public function retornaPedidos()
     {
         $pesquisa = (isset($_GET['cliente'])) ? " WHERE cliente LIKE :cliente OR telefone LIKE :telefone" : '';
-        $stmt = $this->conexao->prepare("SELECT * FROM pedidos {$pesquisa} ORDER BY data_entrega ASC");
+        $stmt = $this->conexao->prepare("
+                SELECT *, 
+                (SELECT SUM(valor_total) FROM pedidos WHERE entregue=0) AS totalPedidosNaoEntregue 
+                FROM pedidos {$pesquisa} 
+                ORDER BY data_entrega ASC");
         if (!empty($pesquisa)) {
             $stmt->bindValue(':cliente', '%' . $_GET['cliente'] . '%', PDO::PARAM_STR);
             $stmt->bindValue(':telefone', '%' . $_GET['cliente'] . '%', PDO::PARAM_STR);
