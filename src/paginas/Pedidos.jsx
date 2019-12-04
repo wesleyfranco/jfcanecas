@@ -94,25 +94,27 @@ class Pedidos extends Component {
                 {msg_sucesso}
                 <Pesquisa handleChangePesquisa={this.handleChangePesquisa} handlePesquisa={this.handlePesquisa} handleLimpar={this.handleLimpar} valor={this.state} />
                 <Breadcrumb itemAtivo="Pedidos" mostraHome={false} />
-                <table className="table table-dark">
-                    <thead className="thead-light">
-                        <tr>
-                            <th scope="col">Cliente</th>
-                            <th scope="col">Arte</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Quantidade</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Entrega</th>
-                            <th scope="col">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <ItensPedido 
-                            lista={this.state.lista} 
-                            handleMarcaEntregue={this.handleMarcaEntregue} 
-                            handleExclui={this.handleExclui} />
-                    </tbody>
-                </table>
+                <div className="table-responsive">
+                    <table className="table table-dark">
+                        <thead className="thead-light">
+                            <tr>
+                                <th scope="col">Cliente</th>
+                                <th scope="col">Arte</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Entrega</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ItensPedido 
+                                lista={this.state.lista} 
+                                handleMarcaEntregue={this.handleMarcaEntregue} 
+                                handleExclui={this.handleExclui} />
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }
